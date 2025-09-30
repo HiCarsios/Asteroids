@@ -28,6 +28,12 @@ def main():
 				print("Thank you for Playing Asteroids")
 				return
 		groupupdate.update(dt)
+		for asteroid in groupASS:
+			if asteroid.collides_with(player):
+				print("Game over!")
+				sys.exit()
+
+
 		screen.fill("black")
 		for obj in groupdraw:
 			obj.draw(screen)
