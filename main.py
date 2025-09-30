@@ -5,7 +5,7 @@ from circleshape import *
 from player  import *
 from asteroid import *
 from AsteroidField import *
-
+from shot import *
 
 
 def main():
@@ -16,8 +16,10 @@ def main():
 	groupupdate = pygame.sprite.Group()
 	groupdraw = pygame.sprite.Group()
 	groupASS = pygame.sprite.Group()
+	groupshot = pygame.sprite.Group()
 	Player.containers = (groupdraw, groupupdate)
 	Asteroid.containers = (groupASS, groupdraw, groupupdate)
+	Shot.containers = (groupshot, groupdraw, groupupdate)
 	AsteroidField.containers = groupupdate
 	asteroid_field = AsteroidField()
 
@@ -29,9 +31,9 @@ def main():
 				return
 		groupupdate.update(dt)
 		for asteroid in groupASS:
-			if asteroid.collides_with(player):
+			if asteroid.collision(player):
 				print("Game over!")
-				sys.exit()
+				return
 
 
 		screen.fill("black")
