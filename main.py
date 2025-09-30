@@ -1,4 +1,5 @@
 import pygame
+import random
 from constants import *
 #Class defines
 from circleshape import *
@@ -38,7 +39,10 @@ def main():
 			for shot in groupshot:
 				if asteroid.collision(shot):
 					shot.kill()
-					asteroid.kill()
+					if asteroid.radius == ASTEROID_MIN_RADIUS:
+						asteroid.kill()
+					else:
+						asteroid.split()
 
 		screen.fill("black")
 		for obj in groupdraw:
