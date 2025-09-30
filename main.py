@@ -35,6 +35,10 @@ def main():
 				print("Game over!")
 				return
 
+			for shot in groupshot:
+				if asteroid.collision(shot):
+					shot.kill()
+					asteroid.kill()
 
 		screen.fill("black")
 		for obj in groupdraw:
